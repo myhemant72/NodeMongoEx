@@ -71,7 +71,7 @@ var initDb = function(callback) {
   if (err) throw err;
   console.log("1 document inserted");
   db.close();
-  //});
+  }); 
 //});
 
 app.get('/', function (req, res) {
