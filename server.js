@@ -51,23 +51,24 @@ var initDb = function(callback) {
     dbDetails.databaseName = db.databaseName;
     dbDetails.url = mongoURLLabel;
     dbDetails.type = 'MongoDB';
-
+    
     console.log('Connected to MongoDB at: %s', mongoURL);
   });
 };
 
 // Creating Owner Information
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://172.30.5.169:27017/sampledb";
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("sampledb");
+//var MongoClient = require('mongodb').MongoClient;
+//var url = "mongodb://172.30.5.169:27017/sampledb";
+//MongoClient.connect(url, function(err, db) {
+ // if (err) throw err;
+ // var dbo = db.db("sampledb");
+  var col = db.collection('owner');
   var myobj = { name: "Rajeev Vashisht", address: "Kalyan, Maharastra" };
-  dbo.collection("owner").insertOne(myobj, function(err, res) {
-    if (err) throw err;
-    console.log("1 document inserted");
-    db.close();
-  });
+  db.collection("owner").insertOne(myobj, function(err, res) {
+  if (err) throw err;
+  console.log("1 document inserted");
+  db.close();
+  //});
 });
 
 app.get('/', function (req, res) {
