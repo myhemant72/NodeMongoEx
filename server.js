@@ -53,13 +53,7 @@ var initDb = function(callback) {
     dbDetails.type = 'MongoDB';
     
     console.log('Connected to MongoDB at: %s', mongoURL);
-  });
-};
-
- if (!db) {
-    initDb(function(err){});
-  }
-if(db)
+      if(db)
 {   
   var col = db.collection('owner');
   var myobj = { name: "Rajeev Vashisht", address: "Kalyan, Maharastra" };
@@ -69,6 +63,11 @@ if(db)
   db.close();
   });
 }
+ console.log('Collectin owner created');
+  });
+};
+
+
 
 
 app.get('/', function (req, res) {
