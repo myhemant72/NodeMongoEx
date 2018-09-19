@@ -62,6 +62,9 @@ var initDb = function(callback) {
 //MongoClient.connect(url, function(err, db) {
  // if (err) throw err;
  // var dbo = db.db("sampledb");
+ if (!db) {
+    initDb(function(err){});
+  }
   var col = db.collection('owner');
   var myobj = { name: "Rajeev Vashisht", address: "Kalyan, Maharastra" };
   db.collection("owner").insertOne(myobj, function(err, res) {
@@ -69,7 +72,7 @@ var initDb = function(callback) {
   console.log("1 document inserted");
   db.close();
   //});
-});
+//});
 
 app.get('/', function (req, res) {
   // try to initialize the db on every request if it's not already
@@ -121,13 +124,13 @@ app.get('/ownerinfo', function (req, res) {
    //} else {
    // res.send('{ pageCount: -1 }');
    // res.send('{Owner:Rajeev Vashisht}');
-   MongoClient.connect(url, function(err, db) {
+   //MongoClient.connect(url, function(err, db) {
 
     var cursor = db.collection('owner').find();
 
     cursor.each(function(err, doc) {
         res.send(doc);
-    });
+    //});
 }); 
       
   }
